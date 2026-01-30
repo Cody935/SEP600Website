@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dislike Logs 😾 - Air Quality Monitor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 via-red-50 to-rose-50 min-h-screen">
+
+    <div class="container mx-auto px-6 py-12 max-w-4xl">
+
+        <div class="flex justify-between items-center mb-10">
+            <h1 class="text-5xl font-extrabold text-rose-800 flex items-center gap-4">
+                <i class="fas fa-skull-crossbones text-rose-600"></i>
+                Dislike Logs 😈
+            </h1>
+            <a href="/" class="text-indigo-600 hover:text-indigo-800 font-semibold text-lg flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <p class="text-center text-xl text-rose-700 mb-12 font-medium">
+            Public shaming corner: Here's everyone who's thrown shade so far...
+        </p>
+
+        {% if dislikes %}
+            <div class="space-y-6">
+                {% for name, ts, msg in dislikes %}
+                <div class="bg-white rounded-2xl shadow-lg p-8 border border-rose-200 hover:border-rose-400 transition-all">
+                    <div class="flex items-start gap-6">
+                        <div class="text-6xl text-rose-500 flex-shrink-0">
+                            <i class="fas fa-thumbs-down"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-2xl font-bold text-rose-900 mb-1">{{ name }}</p>
+                            <p class="text-lg text-rose-700">{{ msg }}</p>
+                            <p class="text-sm text-gray-500 mt-3">{{ ts }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="text-center mt-12 text-xl text-rose-700">
+                Total grumps logged: <span class="font-bold">{{ dislikes | length }}</span>
+            </div>
+        {% else %}
+            <div class="bg-white rounded-3xl shadow-2xl p-16 text-center border border-rose-100">
+                <i class="fas fa-heart text-9xl text-rose-300 mb-8"></i>
+                <h2 class="text-5xl font-bold text-rose-700 mb-6">Zero drama so far!</h2>
+                <p class="text-2xl text-gray-700">
+                    Everyone's too chill... or too scared to hit thumbs-down 😏
+                </p>
+                <a href="/" class="mt-10 inline-block bg-rose-600 text-white px-12 py-6 rounded-full text-xl font-bold hover:bg-rose-700 transition">
+                    Back to Peace & Quiet
+                </a>
+            </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
